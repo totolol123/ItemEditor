@@ -22,6 +22,7 @@
 using ImageSimilarity;
 using PluginInterface;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
@@ -29,7 +30,7 @@ using System.Windows.Forms;
 
 namespace ItemEditor.Controls
 {
-    public partial class ServerItemListBox : ListBox
+    public class ServerItemListBox : ListBox
     {
         #region Private Properties
 
@@ -47,7 +48,6 @@ namespace ItemEditor.Controls
 
         public ServerItemListBox()
         {
-            this.InitializeComponent();
             this.layoutRect = new Rectangle();
             this.destRect = new Rectangle(ItemMargin, 0, 32, 32);
             this.sourceRect = new Rectangle();
@@ -90,6 +90,11 @@ namespace ItemEditor.Controls
         public void Add(ServerItem item)
         {
             Items.Add(item);
+        }
+
+        public void Add(List<ServerItem> items)
+        {
+            Items.AddRange(items.ToArray());
         }
 
         public void Clear()
